@@ -1,7 +1,7 @@
 public final class Customer extends Person{
     private final int customerid;
-    private final String name;
     public Customer(CustomerBuilder customerBuilder) {
+        super();
         this.customerid = customerBuilder.customerid;
         this.name = customerBuilder.name;
 
@@ -17,7 +17,6 @@ public final class Customer extends Person{
 
     @Override
     public int hashCode(){
-        System.out.println("In hashcode");
         int hashcode = 0;
         hashcode = this.customerid*20;
         hashcode += this.name.hashCode();
@@ -26,18 +25,12 @@ public final class Customer extends Person{
 
     @Override
     public boolean equals(Object obj){
-        System.out.println("In equals");
         if (obj instanceof Customer) {
             Customer c = (Customer) obj;
-            return (c.customerid==this.customerid && c.name == this.name);
+            return (c.customerid==this.customerid && c.name.equals(this.name));
         } else {
             return false;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +"id=" + customerid +", name='" +name+ "'}";
     }
 
     public static final class CustomerBuilder {
