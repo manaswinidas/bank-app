@@ -1,4 +1,6 @@
 public class Person{
-    int id;
     String name;
+    public Person(String name){
+        this.name=name;
+    }
 }

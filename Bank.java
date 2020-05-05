@@ -6,7 +6,6 @@ public class Bank {
     public String _name;
 
     private Bank() {
-        _name = "ABC bank";
     }
 
     public static Bank getBank() {
