@@ -20,29 +20,17 @@ public class Bank {
         System.out.println("\n New Customer registered");
     }
 
-    public void depositMoney(Customer c, int amt) {
-        try {
-            if (records.containsKey(c)) {
-                records.put(c, records.get(c) + amt);
-                System.out.println("\n Amount deposited");
-            } else {
-                throw new AccountDoesntExistException("Account doesn't exist in records");
-            }
-        } catch (AccountDoesntExistException ex) {
-            System.out.println("Exception caught");
-        }
+    public void depositMoney(Customer c, int amt) throws AccountDoesntExistException {
+        records.put(c, records.get(c) + amt);
+        System.out.println("\n Amount deposited");
     }
 
-    public void withdrawMoney(Customer c, int amt) {
-        try {
-            if (records.containsKey(c)) {
-                records.put(c, records.get(c) - amt);
-                System.out.println("\n Amount withdrawn");
-            } else {
-                throw new AccountDoesntExistException("Account doesn't exist in records");
-            }
-        } catch (AccountDoesntExistException ex) {
-            System.out.println("Exception caught");
-        }
+    public void withdrawMoney(Customer c, int amt) throws AccountDoesntExistException {
+        records.put(c, records.get(c) - amt);
+        System.out.println("\n Amount withdrawn");
+    }
+
+    public int getBalance(Customer c) throws AccountDoesntExistException {
+        return records.get(c);
     }
 }

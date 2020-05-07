@@ -1,12 +1,9 @@
 public final class Customer extends Person {
     private int customerid;
-    public Customer(CustomerBuilder customerBuilder, String name) {
-        super(name);
-        this.customerid=customerBuilder.customerid;
-    }
 
-    public Customer(String name){
-        super(name);
+    public Customer(CustomerBuilder customerBuilder) {
+        super(customerBuilder.name);
+        this.customerid = customerBuilder.customerid;
     }
 
     public String getCustomerName() {
@@ -51,10 +48,6 @@ public final class Customer extends Person {
             return new CustomerBuilder();
         }
 
-        public static CustomerBuilder aCustomer(Customer customer) {
-            return aCustomer().withId(customer.getCustomerID()).withName(customer.getCustomerName());
-        }
-
         public CustomerBuilder withId(int id) {
             this.customerid = id;
             return this;
@@ -66,7 +59,7 @@ public final class Customer extends Person {
         }
 
         public Customer build() {
-            return new Customer(this, name);
+            return new Customer(this);
         }
 
     }
