@@ -11,7 +11,6 @@ public class AppStart {
             System.out.println("\n2.Deposit amount against a customer");
             System.out.println("\n3.Withdraw amount from a Customer's account");
             System.out.println("\n4.Get balance");
-            System.out.println("\n5.Get all customers");
             int choice = sc.nextInt();
             switch (choice) {
                 case 1: {
@@ -25,50 +24,35 @@ public class AppStart {
                 }
                 case 2: {
                     Customer c = getCustomerInfo();
+                    System.out.println("Enter the amount to be withdrawn:");
+                    int amt = sc.nextInt();
                     try {
-                        if (b.records.containsKey(c)) {
-                            System.out.println("Enter the amount to be deposited:");
-                            int amt = sc.nextInt();
-                            b.depositMoney(c, amt);
-                        } else {
-                            throw new AccountDoesntExistException("Account doesn't exist in records");
-                        }
+                        b.depositMoney(c, amt);
                     } catch (AccountDoesntExistException ex) {
-                        System.out.println("Exception caught");
+                        System.out.println("Account doesn't exist in records");
                     }
                     break;
                 }
                 case 3: {
                     Customer c = getCustomerInfo();
+                    System.out.println("Enter the amount to be withdrawn:");
+                    int amt = sc.nextInt();
                     try {
-                        if (b.records.containsKey(c)) {
-                            System.out.println("Enter the amount to be withdrawn:");
-                            int amt = sc.nextInt();
-                            b.withdrawMoney(c, amt);
-                        } else {
-                            throw new AccountDoesntExistException("Account doesn't exist in records");
-                        }
+                        b.withdrawMoney(c, amt);
                     } catch (AccountDoesntExistException ex) {
-                        System.out.println("Exception caught");
+                        System.out.println("Account doesn't exist in records");
                     }
                     break;
                 }
                 case 4: {
                     Customer c = getCustomerInfo();
                     try {
-                        if (b.records.containsKey(c)) {
-                            System.out.println(b.getBalance(c));
-                        } else {
-                            throw new AccountDoesntExistException("Account doesn't exist in records");
-                        }
+                        System.out.println(b.getBalance(c));
                     } catch (AccountDoesntExistException ex) {
-                        System.out.println("Exception caught");
+                        System.out.println("Account doesn't exist in records");
                     }
                     break;
                 }
-                case 5:
-                    System.out.println(b.records);
-                    break;
             }
 
             System.out.println("Do you want to continue[y/n]?");
